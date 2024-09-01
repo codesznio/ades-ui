@@ -1,0 +1,44 @@
+{
+    "name": "@ades/typography",
+    "main": "./dist/typography.umd.js",
+    "module": "./dist/typography.es.js",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/typography.umd.js",
+    "exports": {
+        ".": {
+            "main": "./dist/typography.umd.js",
+            "module": "./dist/typography.es.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "dev": "nodemon --watch ./lib --ext ts,tsx --delay 1 --exec 'pnpm run build'",
+        "build": "PACKAGE_NAME=typography vite build",
+        "lint": "eslint ./lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "clean": "rm -rf node_modules",
+        "test": "vitest",
+        "test:w": "vitest --watch",
+        "test:coverage": "vitest --coverage"
+    },
+    "peerDependencies": {
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "@types/styled-components": "*",
+        "@ades/styling": "workspace:^",
+        "react": "^17.0 || ^18.0",
+        "react-dom": "^17.0 || ^18.0",
+        "react-icons": "^5",
+        "styled-components": "6.0.9"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@types/react-dom": {
+            "optional": true
+        },
+        "@types/styled-components": {
+            "optional": true
+        }
+    }
+}

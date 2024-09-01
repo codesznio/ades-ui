@@ -1,1 +1,1 @@
-# ades-ui
+# parleezy-ui

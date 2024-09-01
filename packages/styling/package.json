@@ -1,0 +1,42 @@
+{
+    "name": "@ades/styling",
+    "main": "./dist/styling.umd.js",
+    "module": "./dist/styling.es.js",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/styling.umd.js",
+    "exports": {
+        ".": {
+            "main": "./dist/styling.umd.js",
+            "module": "./dist/styling.es.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "dev": "nodemon --watch ./lib --ext ts,tsx --delay 1 --exec 'pnpm run build'",
+        "build": "PACKAGE_NAME=styling vite build",
+        "lint": "eslint ./lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "clean": "rm -rf node_modules",
+        "test": "vitest",
+        "test:w": "vitest --watch",
+        "test:coverage": "vitest --coverage"
+    },
+    "peerDependencies": {
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "@types/styled-components": "*",
+        "react": "^17.0 || ^18.0",
+        "react-dom": "^17.0 || ^18.0",
+        "styled-components": "6.0.9"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@types/react-dom": {
+            "optional": true
+        },
+        "@types/styled-components": {
+            "optional": true
+        }
+    }
+}

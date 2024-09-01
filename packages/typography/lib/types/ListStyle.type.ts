@@ -1,0 +1,27 @@
+export const ListStyleType = {
+    ARMENIAN: 'armenian',
+    CIRCLE: 'circle',
+    CJK_IDEOGRAPHIC: 'cjk-ideographic',
+    DECIMAL: 'decimal',
+    DECIMAL_LEADING_ZERO: 'decimal-leading-zero',
+    DISC: 'disc',
+    GEORGIAN: 'georgian',
+    HEBREW: 'hebrew',
+    HIRAGANA: 'hiragana',
+    HIRAGANA_IROHA: 'hiragana-iroha',
+    INHERIT: 'inherit',
+    KATAKANA: 'katakana',
+    KATAKANA_IROHA: 'katakana-iroha',
+    LOWER_ALPHA: 'lower-alpha',
+    LOWER_GREEK: 'lower-greek',
+    LOWER_LATION: 'lower-latin',
+    LOWER_ROMAN: 'lower-roman',
+    NONE: 'none',
+    SQUARE: 'square',
+    UPPER_ALPHA: 'upper-alpha',
+    UPPER_GREEK: 'upper-greek',
+    UPPER_LATION: 'upper-latin',
+    UPPER_ROMAN: 'upper-roman',
+} as const
+
+export type ListStyleType = (typeof ListStyleType)[keyof typeof ListStyleType]

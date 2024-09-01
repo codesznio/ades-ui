@@ -1,0 +1,27 @@
+{
+    "name": "@ades/types",
+    "main": "./dist/types.umd.js",
+    "module": "./dist/types.es.js",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/types.umd.js",
+    "exports": {
+        ".": {
+            "main": "./dist/types.umd.js",
+            "module": "./dist/types.es.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "dev": "nodemon --watch ./lib --ext ts,tsx --delay 1 --exec 'pnpm run build'",
+        "build": "PACKAGE_NAME=types vite build",
+        "lint": "eslint ./lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "clean": "rm -rf node_modules",
+        "test": "vitest",
+        "test:w": "vitest --watch",
+        "test:coverage": "vitest --coverage"
+    },
+    "peerDependencies": {
+        "@tanstack/react-query": "^5",
+        "axios": "^1"
+    }
+}

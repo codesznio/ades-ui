@@ -1,0 +1,28 @@
+# Ignore build artifacts
+build
+dist
+out
+dist/*
+
+# Ignore configuration files
+.prettierignore
+.eslintignore
+.gitignore
+
+# Ignore git folders
+.github/
+.husky/
+
+# Ignore cache
+.cache
+.turbo
+
+# Ignore Lock files
+**-lock.**
+
+# Node Modules
+node_modules
+
+# Route Tree
+routeTree.gen.ts
+**/routeTree.gen

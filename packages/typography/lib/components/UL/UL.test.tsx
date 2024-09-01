@@ -1,0 +1,33 @@
+import { render, screen } from '@/utils/test.helpers'
+
+// Component
+import { UL as Component, ULProps } from './UL'
+
+describe('<UL />', () => {
+    const renderComponent = (props: Partial<ULProps> = {}) => {
+        return render(
+            <Component {...props}>
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </Component>,
+        )
+    }
+
+    it('should render without crashing', () => {
+        renderComponent()
+        expect(screen.getByText('Item 1')).toBeInTheDocument()
+        expect(screen.getByText('Item 2')).toBeInTheDocument()
+        expect(screen.getByText('Item 3')).toBeInTheDocument()
+    })
+
+    it('should forward ref correctly', () => {
+        const ref = { current: null }
+        render(
+            <Component ref={ref}>
+                <li>Item 1</li>
+            </Component>,
+        )
+        expect(ref.current).not.toBeNull()
+    })
+})

@@ -1,0 +1,107 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:@tanstack/eslint-plugin-query/recommended",
+        "plugin:storybook/recommended",
+        "plugin:styled-components-a11y/recommended",
+        "plugin:testing-library/react",
+        "plugin:eslint-comments/recommended",
+        "plugin:promise/recommended",
+        "plugin:sonarjs/recommended",
+        "plugin:no-unsanitized/DOM",
+        "plugin:json/recommended",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
+    "globals": {
+        "react": "writable"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "typescript": {}
+        },
+        "react": {
+            "version": "detect"
+        }
+    },
+    "parserOptions": {
+        "ecmaVersion": 2023,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        // Accessibility
+        "jsx-a11y/no-onchange": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+
+        // Typescript Coding Standards
+        "@typescript-eslint/no-empty-function": "error",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "vars": "all",
+                "args": "after-used",
+                "ignoreRestSiblings": true,
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
+            }
+        ],
+
+        // Tanstack
+        "@tanstack/query/exhaustive-deps": "off",
+
+        // React
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "react/jsx-sort-props": [
+            "error",
+            {
+                "callbacksLast": true,
+                "shorthandFirst": true,
+                "multiline": "last",
+                "noSortAlphabetically": false,
+                "reservedFirst": ["key", "ref"]
+            }
+        ],
+
+        // Sonar
+        "sonarjs/no-duplicate-string": "off",
+
+        // Developer Specific
+        "array-bracket-newline": ["warn", { "multiline": true }],
+        "arrow-parens": ["warn", "always"],
+        "no-console": ["warn", { "allow": ["warn", "error"] }],
+        "no-multiple-empty-lines": ["warn", { "max": 2, "maxEOF": 0 }],
+        "object-curly-spacing": ["warn", "always"],
+        "comma-dangle": "off"
+    },
+    "overrides": [
+        {
+            "files": ["*.stories.tsx", "*.stories.ts", "vite.config.ts"],
+            "rules": {
+                "max-len": "off"
+            }
+        },
+        {
+            "files": ["**/routes/*"],
+            "rules": {
+                "react-hooks/rules-of-hooks": "off"
+            }
+        }
+    ],
+    "ignorePatterns": ["routeTree.gen.ts", "**/routes/*"]
+}

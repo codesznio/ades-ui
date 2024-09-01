@@ -1,0 +1,12 @@
+{
+    "extends": "../../developer/config/tsconfig/tsconfig.json",
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./lib/*"]
+        },
+        "types": ["vitest/globals"]
+    },
+    "include": ["./**/*", "./utils", "vite.config.ts", "lib/providers"]
+}

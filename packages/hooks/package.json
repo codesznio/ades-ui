@@ -1,0 +1,37 @@
+{
+    "name": "@ades/hooks",
+    "main": "./dist/hooks.umd.js",
+    "module": "./dist/hooks.es.js",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/hooks.umd.js",
+    "exports": {
+        ".": {
+            "main": "./dist/hooks.umd.js",
+            "module": "./dist/hooks.es.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "dev": "nodemon --watch ./lib --ext ts,tsx --delay 1 --exec 'pnpm run build'",
+        "build": "PACKAGE_NAME=hooks vite build",
+        "lint": "eslint ./lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "clean": "rm -rf node_modules",
+        "test": "vitest",
+        "test:w": "vitest --watch",
+        "test:coverage": "vitest --coverage"
+    },
+    "peerDependencies": {
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "react": "^18.0",
+        "react-dom": "^18.0"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@types/react-dom": {
+            "optional": true
+        }
+    }
+}

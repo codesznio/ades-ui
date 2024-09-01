@@ -1,0 +1,53 @@
+{
+    "name": "@ades/ui",
+    "main": "./dist/ui.umd.js",
+    "module": "./dist/ui.es.js",
+    "types": "./dist/index.d.ts",
+    "unpkg": "./dist/ui.umd.js",
+    "exports": {
+        ".": {
+            "main": "./dist/ui.umd.js",
+            "module": "./dist/ui.es.js",
+            "types": "./dist/index.d.ts"
+        }
+    },
+    "scripts": {
+        "build": "PACKAGE_NAME=ui vite build",
+        "lint": "eslint ./lib --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "clean": "rm -rf node_modules",
+        "test": "vitest",
+        "test:w": "vitest --watch",
+        "test:coverage": "vitest --coverage"
+    },
+    "peerDependencies": {
+        "@use-gesture/react": "^10",
+        "@react-spring/web": "^9",
+        "@types/react": "*",
+        "@types/react-dom": "*",
+        "@types/styled-components": "*",
+        "@ades/hooks": "workspace:^",
+        "@ades/typography": "workspace:^",
+        "@ades/styling": "workspace:^",
+        "date-fns": "^3.6.0",
+        "framer-motion": "^11",
+        "react": "^17.0 || ^18.0",
+        "react-circle-flags": "^0.0.20",
+        "react-div-100vh": "^0.7.0",
+        "react-dom": "^17.0 || ^18.0",
+        "react-dropzone": "^14",
+        "react-i18next": "^14",
+        "react-icons": "^5",
+        "styled-components": "6.0.9"
+    },
+    "peerDependenciesMeta": {
+        "@types/react": {
+            "optional": true
+        },
+        "@types/react-dom": {
+            "optional": true
+        },
+        "@types/styled-components": {
+            "optional": true
+        }
+    }
+}
