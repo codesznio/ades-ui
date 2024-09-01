@@ -1,4 +1,5 @@
 export * from './authentication'
+export * from './game'
 export * from './response'
 export * from './user'
 export * from './developer'

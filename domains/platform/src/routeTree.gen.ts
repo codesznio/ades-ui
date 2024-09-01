@@ -16,6 +16,8 @@ import { Route as PublicRouteImport } from './routes/_public/route'
 import { Route as ProtectedRouteImport } from './routes/_protected/route'
 import { Route as ProtectedIndexImport } from './routes/_protected/index'
 import { Route as PublicLoginImport } from './routes/_public/login'
+import { Route as PublicGamesIndexImport } from './routes/_public/games/index'
+import { Route as PublicGamesIdImport } from './routes/_public/games/$id'
 
 // Create/Update Routes
 
@@ -41,6 +43,16 @@ const ProtectedIndexRoute = ProtectedIndexImport.update({
 
 const PublicLoginRoute = PublicLoginImport.update({
   path: '/login',
+  getParentRoute: () => PublicRouteRoute,
+} as any)
+
+const PublicGamesIndexRoute = PublicGamesIndexImport.update({
+  path: '/games/',
+  getParentRoute: () => PublicRouteRoute,
+} as any)
+
+const PublicGamesIdRoute = PublicGamesIdImport.update({
+  path: '/games/$id',
   getParentRoute: () => PublicRouteRoute,
 } as any)
 
@@ -83,6 +95,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedIndexImport
       parentRoute: typeof ProtectedRouteImport
     }
+    '/_public/games/$id': {
+      id: '/_public/games/$id'
+      path: '/games/$id'
+      fullPath: '/games/$id'
+      preLoaderRoute: typeof PublicGamesIdImport
+      parentRoute: typeof PublicRouteImport
+    }
+    '/_public/games/': {
+      id: '/_public/games/'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof PublicGamesIndexImport
+      parentRoute: typeof PublicRouteImport
+    }
   }
 }
 
@@ -90,7 +116,11 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   ProtectedRouteRoute: ProtectedRouteRoute.addChildren({ ProtectedIndexRoute }),
-  PublicRouteRoute: PublicRouteRoute.addChildren({ PublicLoginRoute }),
+  PublicRouteRoute: PublicRouteRoute.addChildren({
+    PublicLoginRoute,
+    PublicGamesIdRoute,
+    PublicGamesIndexRoute,
+  }),
   CallbackRoute,
 })
 
@@ -116,7 +146,9 @@ export const routeTree = rootRoute.addChildren({
     "/_public": {
       "filePath": "_public/route.tsx",
       "children": [
-        "/_public/login"
+        "/_public/login",
+        "/_public/games/$id",
+        "/_public/games/"
       ]
     },
     "/callback": {
@@ -129,6 +161,14 @@ export const routeTree = rootRoute.addChildren({
     "/_protected/": {
       "filePath": "_protected/index.tsx",
       "parent": "/_protected"
+    },
+    "/_public/games/$id": {
+      "filePath": "_public/games/$id.tsx",
+      "parent": "/_public"
+    },
+    "/_public/games/": {
+      "filePath": "_public/games/index.tsx",
+      "parent": "/_public"
     }
   }
 }
