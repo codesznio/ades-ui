@@ -16,8 +16,8 @@ import { Route as PublicRouteImport } from './routes/_public/route'
 import { Route as ProtectedRouteImport } from './routes/_protected/route'
 import { Route as ProtectedIndexImport } from './routes/_protected/index'
 import { Route as PublicLoginImport } from './routes/_public/login'
-import { Route as PublicGamesIndexImport } from './routes/_public/games/index'
-import { Route as PublicGamesIdImport } from './routes/_public/games/$id'
+import { Route as ProtectedGamesIndexImport } from './routes/_protected/games/index'
+import { Route as ProtectedGamesIdImport } from './routes/_protected/games/$id'
 
 // Create/Update Routes
 
@@ -46,14 +46,14 @@ const PublicLoginRoute = PublicLoginImport.update({
   getParentRoute: () => PublicRouteRoute,
 } as any)
 
-const PublicGamesIndexRoute = PublicGamesIndexImport.update({
+const ProtectedGamesIndexRoute = ProtectedGamesIndexImport.update({
   path: '/games/',
-  getParentRoute: () => PublicRouteRoute,
+  getParentRoute: () => ProtectedRouteRoute,
 } as any)
 
-const PublicGamesIdRoute = PublicGamesIdImport.update({
+const ProtectedGamesIdRoute = ProtectedGamesIdImport.update({
   path: '/games/$id',
-  getParentRoute: () => PublicRouteRoute,
+  getParentRoute: () => ProtectedRouteRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -95,19 +95,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProtectedIndexImport
       parentRoute: typeof ProtectedRouteImport
     }
-    '/_public/games/$id': {
-      id: '/_public/games/$id'
+    '/_protected/games/$id': {
+      id: '/_protected/games/$id'
       path: '/games/$id'
       fullPath: '/games/$id'
-      preLoaderRoute: typeof PublicGamesIdImport
-      parentRoute: typeof PublicRouteImport
+      preLoaderRoute: typeof ProtectedGamesIdImport
+      parentRoute: typeof ProtectedRouteImport
     }
-    '/_public/games/': {
-      id: '/_public/games/'
+    '/_protected/games/': {
+      id: '/_protected/games/'
       path: '/games'
       fullPath: '/games'
-      preLoaderRoute: typeof PublicGamesIndexImport
-      parentRoute: typeof PublicRouteImport
+      preLoaderRoute: typeof ProtectedGamesIndexImport
+      parentRoute: typeof ProtectedRouteImport
     }
   }
 }
@@ -115,12 +115,12 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export const routeTree = rootRoute.addChildren({
-  ProtectedRouteRoute: ProtectedRouteRoute.addChildren({ ProtectedIndexRoute }),
-  PublicRouteRoute: PublicRouteRoute.addChildren({
-    PublicLoginRoute,
-    PublicGamesIdRoute,
-    PublicGamesIndexRoute,
+  ProtectedRouteRoute: ProtectedRouteRoute.addChildren({
+    ProtectedIndexRoute,
+    ProtectedGamesIdRoute,
+    ProtectedGamesIndexRoute,
   }),
+  PublicRouteRoute: PublicRouteRoute.addChildren({ PublicLoginRoute }),
   CallbackRoute,
 })
 
@@ -140,15 +140,15 @@ export const routeTree = rootRoute.addChildren({
     "/_protected": {
       "filePath": "_protected/route.tsx",
       "children": [
-        "/_protected/"
+        "/_protected/",
+        "/_protected/games/$id",
+        "/_protected/games/"
       ]
     },
     "/_public": {
       "filePath": "_public/route.tsx",
       "children": [
-        "/_public/login",
-        "/_public/games/$id",
-        "/_public/games/"
+        "/_public/login"
       ]
     },
     "/callback": {
@@ -162,13 +162,13 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_protected/index.tsx",
       "parent": "/_protected"
     },
-    "/_public/games/$id": {
-      "filePath": "_public/games/$id.tsx",
-      "parent": "/_public"
+    "/_protected/games/$id": {
+      "filePath": "_protected/games/$id.tsx",
+      "parent": "/_protected"
     },
-    "/_public/games/": {
-      "filePath": "_public/games/index.tsx",
-      "parent": "/_public"
+    "/_protected/games/": {
+      "filePath": "_protected/games/index.tsx",
+      "parent": "/_protected"
     }
   }
 }
