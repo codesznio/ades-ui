@@ -51,9 +51,7 @@ export function LoginForm() {
     const onSubmit = async (data: Schema) => {
         mutation.mutate(data, {
             onSuccess: async (res) => {
-                authorize(res.data)
-
-                navigate({ to: '/' })
+                authorize(res.data, () => setTimeout(() => navigate({ to: '/' }), 0))
             },
             onError: (err) => {
                 setError('root.default', { message: err.response?.data?.data?.message })
